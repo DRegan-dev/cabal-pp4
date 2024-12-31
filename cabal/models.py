@@ -14,3 +14,11 @@ class User(models.Model):
     email = models.EmailField(unique=True)
     role = models.CharField(max_length=10, choices=ROLE_CHOICES)
     created_on = models.DateTimeField(auto_now_add=True)
+
+# Venue/Promoter Model
+class Venue(models.Model):
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
+    name = models.CharField(max_length=255)
+    location = models.CharField(max_length=255)
+    description = models.TextField()
+    ratings = models.ManyToManyField('Artist', through='VenueRating', related_name='rated_venues')
