@@ -22,3 +22,10 @@ class Venue(models.Model):
     location = models.CharField(max_length=255)
     description = models.TextField()
     ratings = models.ManyToManyField('Artist', through='VenueRating', related_name='rated_venues')
+
+class Artist(models.Model):
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
+    name = models.CharField(max_length=255)
+    genre = models.CharField(max_length=100)
+    profile_description = models.TextField()
+    past_events = models.Manager('Event', related_name='Historical_artists')
