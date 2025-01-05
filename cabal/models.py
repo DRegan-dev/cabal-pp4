@@ -37,3 +37,13 @@ class VenueRating(models.Model):
     rating = models.IntegerField() #Scale 1-5
     review = models.TextField()
     created_on = models.DateTimeField(auto_now_add=True)
+
+# Events Model 
+class Event(models.Model):
+    title = models.CharField(max_length=255)
+    description = models.TextField()
+    date = models.DateTimeField()
+    venue = models.ForeignKey(Venue, on_delete=models.CASACADE, related_name='events')
+    artists = models.ManyToManyField(Artist, related_name='events')
+    attendees = models.ManyToManyField('Attendee', through='Ticket', related_name='events')
+    ticket_price = models.DecimalField(max_digits=10, decimal_places=2)
