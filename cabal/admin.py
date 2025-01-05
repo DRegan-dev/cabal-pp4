@@ -5,3 +5,4 @@ from .models import User, Venue
 admin.site.register(User)
 admin.site.register(Venue)
 admin.site.register(Artist)
+admin.site.register(VenueRating)
