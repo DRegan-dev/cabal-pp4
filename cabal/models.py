@@ -53,3 +53,7 @@ class EventStatistics(models.Model):
     tickets_sold = models.IntegerField()
     revenue = models.DecimalField(max_digits=10, decimal_places=2)
     created_on = models.DateTimeField(auto_now_add=True)
+
+class Attendee(models.Model):
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
+    events_registered = models.ManyToManyField(Event, through='Ticket', related_name='registered_attendees')
