@@ -47,3 +47,9 @@ class Event(models.Model):
     artists = models.ManyToManyField(Artist, related_name='events')
     attendees = models.ManyToManyField('Attendee', through='Ticket', related_name='events')
     ticket_price = models.DecimalField(max_digits=10, decimal_places=2)
+
+class EventStatistics(models.Model):
+    event = models.OneToOneField(Event, on_delete=models.CASCADE, related_name='statistics')
+    tickets_sold = models.IntegerField()
+    revenue = models.DecimalField(max_digits=10, decimal_places=2)
+    created_on = models.DateTimeField(auto_now_add=True)
