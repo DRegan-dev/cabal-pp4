@@ -10,3 +10,6 @@ def venue_dashboard(request):
 
 def attendee_dashboard(request):
     return render(request, 'attendee_dashboard.html')
+
+def events_dashboard(request):
+    return render(request, 'events_dashboard.html')
