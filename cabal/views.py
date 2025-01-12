@@ -7,3 +7,6 @@ def index(request):
 
 def venue_dashboard(request):
     return render(request, 'venue_dashboard.html')
+
+def attendee_dashboard(request):
+    return render(request, 'attendee_dashboard.html')
