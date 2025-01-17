@@ -17,3 +17,6 @@ def events_dashboard(request):
 def create_event (request):
     return HttpResponse("This is the Create Event page")
 
+def events_list(request):
+    return render(request, 'events_list.html')
+
