@@ -24,5 +24,6 @@ urlpatterns = [
     path('venues/', include('cabal.urls')), # Include cabal app URLs
     path('attendees/', include('cabal.urls')),
     path('events/', include('cabal.urls')),
+    path('artists/', include('cabal.urls')),
 ]
 
