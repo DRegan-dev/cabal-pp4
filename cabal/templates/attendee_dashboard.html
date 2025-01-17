@@ -1,12 +1,25 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
-    <h1>Attendee Dashboard</h1>
-    <p>Welcome to your Dashboard. You can view your upcoming events here.</p>
-</body>
-</html>
+{% extends "base.html" %}
+
+{% block title %}
+Attendee Dashboard
+{% endblock %}
+
+{% block content %}
+<h1>Welcome to your Dashboard</h1>
+<p>Here you can see the events you've registered for and explore new events to attend.</p>
+
+<section>
+    <h2>My Registered Events</h2>
+    <ul>
+        {% for event in registered_events %}
+            <li>{{ event.title }} - {{ event.date }}</li>
+        {% empty %}
+            <li>You have not registered for any events yet.</li>
+        {% endfor %}
+    </ul>
+</section>
+
+<section>
+    <p><a href="{% url 'events_list %}">Browse all events</a></p>
+</section>
+{% endblock %}

@@ -1,12 +1,36 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Venue Dashboard</title>
-</head>
-<body>
-    <h1>Venue Dashboard</h1>
-    <p>Welcome to your Dashboard. You can manage your venue details here.</p>
-</body>
-</html>
+{% extends "base.html" %}
+
+{% block title %}
+Venue Dashboard
+{% endblock %}
+
+{% block content %}
+<h1>Welcome to the Venue Dashboard</h1>
+<p>Manage your events, check ratings, and view upcoming bookings for your venue.</p>
+
+<section>
+    <h2>Upcoming Events</h2>
+    <ul>
+        {% for event in upcoming_events %}
+            <li>{{ event.title }} - {{ event.date }}</li>
+        {% empty %}
+            <li>No upcoming events at your venue.</li>
+    </ul>
+</section>
+
+<section>
+    <h2>Your Ratings</h2>
+    <ul>
+        {% for rating in venue_ratings %}
+            <li>Rated {{ rating.rating }}/5 by {{ rating.artist.name }}: "{{ rating.review }}"</li>
+        {% empty %}
+            <li>No ratings for your venue yet.</li>
+        {% endfor %}
+    </ul>
+</section>
+
+<section>
+    <h2>Create a New Event</h2>
+    <p><a href="{% url 'create_Event' %}">Add a new event</a></p>
+</section>
+{% endblock %}
