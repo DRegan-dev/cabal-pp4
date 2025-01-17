@@ -15,6 +15,7 @@ Venue Dashboard
             <li>{{ event.title }} - {{ event.date }}</li>
         {% empty %}
             <li>No upcoming events at your venue.</li>
+        {% endfor %}
     </ul>
 </section>
 
@@ -31,6 +32,6 @@ Venue Dashboard
 
 <section>
     <h2>Create a New Event</h2>
-    <p><a href="{% url 'create_Event' %}">Add a new event</a></p>
+    <p><a href="{% url 'create_event' %}">Add a new event</a></p>
 </section>
 {% endblock %}

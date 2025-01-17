@@ -12,4 +12,8 @@ def attendee_dashboard(request):
     return render(request, 'attendee_dashboard.html')
 
 def events_dashboard(request):
-    return render(request, 'events_dashboard.html')
+    return render(request, 'events_dashboard.html', {'events': events})
+
+def create_event (request):
+    return HttpResponse("This is the Create Event page")
+
