@@ -24,6 +24,9 @@ class Venue(models.Model):
     description = models.TextField()
     ratings = models.ManyToManyField('Artist', through='VenueRating', related_name='rated_venues')
 
+    def __str__(self):
+        return self.name
+
 # Artist/Band model
 class Artist(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
