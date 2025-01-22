@@ -1,5 +1,7 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth import login, authenticate
+from .models import Event
+from django.utils.timezone import now 
 
 from django.http import HttpResponse
 
@@ -57,7 +59,16 @@ def attendee_dashboard(request):
     return render(request, 'attendee_dashboard.html')
 
 def events_dashboard(request):
-    return render(request, 'events_dashboard.html', {'events': events})
+    upcoming_events = Event.objects.filter(user=request.user, date__gte=now())
+    past_events = Event.objects.filter(user=request.user, date__lt=now())
+    user_events = Event.objects.filter(user=request.user).order_by('date')
+    context = {
+        'user_events': user_events,
+        'upcoming_events': upcoming_events,
+        'past_events': past_events,
+        }
+    events = Event.objects.all()
+    return render(request, 'events_dashboard.html', context)
 
 def create_event (request):
     return HttpResponse("This is the Create Event page")

@@ -18,7 +18,7 @@ class User(AbstractUser):
 
 # Venue/Promoter Model
 class Venue(models.Model):
-    user = models.OneToOneField(User, on_delete=models.CASCADE)
+    user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='venues')
     name = models.CharField(max_length=255)
     location = models.CharField(max_length=255)
     description = models.TextField()
@@ -33,7 +33,7 @@ class Artist(models.Model):
     name = models.CharField(max_length=255)
     genre = models.CharField(max_length=100)
     profile_description = models.TextField()
-    past_events = models.ManyToManyField('Event', related_name='historical_events')
+    past_events = models.ManyToManyField('Event', related_name='historical_events', blank=True)
 
 # Ratings between Artists and Venues
 class VenueRating(models.Model):
@@ -49,12 +49,13 @@ class VenueRating(models.Model):
             raise ValidationError("Rating must be between 1 and 5.")
 
 # Events Model 
-class Event(models.Model):
+class Event(models.Model): 
+    user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='events', default=1)
     title = models.CharField(max_length=255)
     description = models.TextField()
     date = models.DateTimeField()
     venue = models.ForeignKey(Venue, on_delete=models.CASCADE, related_name='events')
-    artists = models.ManyToManyField(Artist, related_name='events')
+    artists = models.ManyToManyField(Artist, related_name='events', blank=True)
     attendees = models.ManyToManyField('Attendee', through='Ticket', related_name='events')
     ticket_price = models.DecimalField(max_digits=10, decimal_places=2, default=0.00)
 

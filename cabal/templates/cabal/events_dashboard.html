@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+
+{% block title %}
+Events Dashboard
+{% endblock %}
+
+{% block content %}
+<div class="dashboard-container">
+    <h1>Events Dashboard</h1>
+    <p>Welcome to the Events Dashboard. Here you can manage all the events associated with your account.</p>
+
+    <section>
+        <h2>Upcoming Events</h2>
+        <ul>
+            {% for event in user_events %}
+                <li>
+                    <strong>{{ event.title }}</strong><br>
+                    {{ event.description }} <br>
+                    Date: {{ event.date }} <br>
+                    Venue: {{ event.venue.name }}
+                </li>
+            {% empty %}
+            <li>No Upcoming events found</li>
+            {% endfor %}
+        </ul>
+    </section>
+</div>
+{% endblock %}
