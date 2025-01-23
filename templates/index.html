@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+
+{% block title %}
+Cabal Home
+{% endblock %}
+
+{% block content %}
+<div class="home-container">
+    <h1>This is Cabal</h1>
+    <p>Shift your paradigm. Be the future.</p>
+    <div class="auth_links">
+        <a href="{% url 'login' %}" class="btn btn-primary">Sign In</a>
+        <a href="{% url 'register' %}" class="btn btn-secondary">Register</a>
+    </div>
+</div>
+
+{% endblock %}
